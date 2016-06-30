@@ -25,11 +25,6 @@
 	<!-- 用户查询 -->
 	<select id="findSysuserList" parameterType="yycg.base.pojo.vo.SysuserQueryVo"
 		resultType="yycg.base.pojo.vo.SysuserCustom">
-		<if test="pageQuery!=null">
-			select page_2.*
-			from (select page_1.*, rownum page_num
-			from (
-		</if>
 
 		select * from (
 		select SYSUSER.id,
@@ -38,39 +33,13 @@
 		SYSUSER.groupid,
 		sysuser.USERSTATE,
 		SYSUSER.sysid,
-		decode(SYSUSER.Groupid,
-		'1',
-		(select mc
-		from userjd where
-		id = sysuser.sysid),
-		'2',
-		(select mc from userjd where
-		id =
-		sysuser.sysid),
-		'3',
-		(select mc from useryy where id =
-		sysuser.sysid),
-		'4',
-		(select mc from usergys where id = sysuser.sysid)
-		)
-		sysmc
+		'www' sysmc
 
 		from
 		SYSUSER
 		)sysuser
 
-
-		<where>
-			<include refid="query_sysuser_where" />
-		</where>
-
-		<if test="pageQuery!=null">
-			) page_1
-        <![CDATA[
-         where rownum <= ${pageQuery.PageQuery_end}) page_2
- where page_2.page_num >= ${pageQuery.PageQuery_start}
- ]]>
-		</if>
+		
 	</select>
 	
 	<!-- 查询列表的总记录数 -->
@@ -84,31 +53,12 @@
 		SYSUSER.groupid,
 		sysuser.USERSTATE,
 		SYSUSER.sysid,
-		decode(SYSUSER.Groupid,
-		'1',
-		(select mc
-		from userjd where
-		id = sysuser.sysid),
-		'2',
-		(select mc from userjd where
-		id =
-		sysuser.sysid),
-		'3',
-		(select mc from useryy where id =
-		sysuser.sysid),
-		'4',
-		(select mc from usergys where id = sysuser.sysid)
-		)
-		sysmc
+		"wnc" sysmc
 
 		from
 		SYSUSER
 		)sysuser
 
-
-		<where>
-			<include refid="query_sysuser_where" />
-		</where>
 	
 	</select>
 
