@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="yycg.base.dao.mapper.DictinfoMapper" >
+  <resultMap id="BaseResultMap" type="yycg.base.pojo.po.Dictinfo" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="DICTCODE" property="dictcode" jdbcType="VARCHAR" />
+    <result column="TYPECODE" property="typecode" jdbcType="VARCHAR" />
+    <result column="INFO" property="info" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="UPDATETIME" property="updatetime" jdbcType="VARCHAR" />
+    <result column="DICTSORT" property="dictsort" jdbcType="DECIMAL" />
+    <result column="ISENABLE" property="isenable" jdbcType="VARCHAR" />
+    <result column="VALUETYPE" property="valuetype" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, DICTCODE, TYPECODE, INFO, REMARK, UPDATETIME, DICTSORT, ISENABLE, VALUETYPE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="yycg.base.pojo.po.DictinfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from DICTINFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from DICTINFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from DICTINFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="yycg.base.pojo.po.DictinfoExample" >
+    delete from DICTINFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="yycg.base.pojo.po.Dictinfo" >
+    insert into DICTINFO (ID, DICTCODE, TYPECODE, 
+      INFO, REMARK, UPDATETIME, 
+      DICTSORT, ISENABLE, VALUETYPE
+      )
+    values (#{id,jdbcType=VARCHAR}, #{dictcode,jdbcType=VARCHAR}, #{typecode,jdbcType=VARCHAR}, 
+      #{info,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{updatetime,jdbcType=VARCHAR}, 
+      #{dictsort,jdbcType=DECIMAL}, #{isenable,jdbcType=VARCHAR}, #{valuetype,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="yycg.base.pojo.po.Dictinfo" >
+    insert into DICTINFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="dictcode != null" >
+        DICTCODE,
+      </if>
+      <if test="typecode != null" >
+        TYPECODE,
+      </if>
+      <if test="info != null" >
+        INFO,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="updatetime != null" >
+        UPDATETIME,
+      </if>
+      <if test="dictsort != null" >
+        DICTSORT,
+      </if>
+      <if test="isenable != null" >
+        ISENABLE,
+      </if>
+      <if test="valuetype != null" >
+        VALUETYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="dictcode != null" >
+        #{dictcode,jdbcType=VARCHAR},
+      </if>
+      <if test="typecode != null" >
+        #{typecode,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null" >
+        #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="dictsort != null" >
+        #{dictsort,jdbcType=DECIMAL},
+      </if>
+      <if test="isenable != null" >
+        #{isenable,jdbcType=VARCHAR},
+      </if>
+      <if test="valuetype != null" >
+        #{valuetype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="yycg.base.pojo.po.DictinfoExample" resultType="java.lang.Integer" >
+    select count(*) from DICTINFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update DICTINFO
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dictcode != null" >
+        DICTCODE = #{record.dictcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typecode != null" >
+        TYPECODE = #{record.typecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.info != null" >
+        INFO = #{record.info,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatetime != null" >
+        UPDATETIME = #{record.updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dictsort != null" >
+        DICTSORT = #{record.dictsort,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isenable != null" >
+        ISENABLE = #{record.isenable,jdbcType=VARCHAR},
+      </if>
+      <if test="record.valuetype != null" >
+        VALUETYPE = #{record.valuetype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update DICTINFO
+    set ID = #{record.id,jdbcType=VARCHAR},
+      DICTCODE = #{record.dictcode,jdbcType=VARCHAR},
+      TYPECODE = #{record.typecode,jdbcType=VARCHAR},
+      INFO = #{record.info,jdbcType=VARCHAR},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      UPDATETIME = #{record.updatetime,jdbcType=VARCHAR},
+      DICTSORT = #{record.dictsort,jdbcType=DECIMAL},
+      ISENABLE = #{record.isenable,jdbcType=VARCHAR},
+      VALUETYPE = #{record.valuetype,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="yycg.base.pojo.po.Dictinfo" >
+    update DICTINFO
+    <set >
+      <if test="dictcode != null" >
+        DICTCODE = #{dictcode,jdbcType=VARCHAR},
+      </if>
+      <if test="typecode != null" >
+        TYPECODE = #{typecode,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null" >
+        INFO = #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        UPDATETIME = #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="dictsort != null" >
+        DICTSORT = #{dictsort,jdbcType=DECIMAL},
+      </if>
+      <if test="isenable != null" >
+        ISENABLE = #{isenable,jdbcType=VARCHAR},
+      </if>
+      <if test="valuetype != null" >
+        VALUETYPE = #{valuetype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="yycg.base.pojo.po.Dictinfo" >
+    update DICTINFO
+    set DICTCODE = #{dictcode,jdbcType=VARCHAR},
+      TYPECODE = #{typecode,jdbcType=VARCHAR},
+      INFO = #{info,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      UPDATETIME = #{updatetime,jdbcType=VARCHAR},
+      DICTSORT = #{dictsort,jdbcType=DECIMAL},
+      ISENABLE = #{isenable,jdbcType=VARCHAR},
+      VALUETYPE = #{valuetype,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

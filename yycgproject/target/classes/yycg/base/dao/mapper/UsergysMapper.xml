@@ -1,0 +1,762 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="yycg.base.dao.mapper.UsergysMapper" >
+  <resultMap id="BaseResultMap" type="yycg.base.pojo.po.Usergys" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="MC" property="mc" jdbcType="VARCHAR" />
+    <result column="LB" property="lb" jdbcType="VARCHAR" />
+    <result column="XKZ" property="xkz" jdbcType="VARCHAR" />
+    <result column="XKZYXQ" property="xkzyxq" jdbcType="VARCHAR" />
+    <result column="LXR" property="lxr" jdbcType="VARCHAR" />
+    <result column="DH" property="dh" jdbcType="VARCHAR" />
+    <result column="JYFW" property="jyfw" jdbcType="VARCHAR" />
+    <result column="ZCDZ" property="zcdz" jdbcType="VARCHAR" />
+    <result column="LXDZ" property="lxdz" jdbcType="VARCHAR" />
+    <result column="YZBM" property="yzbm" jdbcType="VARCHAR" />
+    <result column="ZZC" property="zzc" jdbcType="VARCHAR" />
+    <result column="CZ" property="cz" jdbcType="VARCHAR" />
+    <result column="FRMC" property="frmc" jdbcType="VARCHAR" />
+    <result column="FRSFZ" property="frsfz" jdbcType="VARCHAR" />
+    <result column="ZCZJ" property="zczj" jdbcType="VARCHAR" />
+    <result column="XSE" property="xse" jdbcType="VARCHAR" />
+    <result column="DZYX" property="dzyx" jdbcType="VARCHAR" />
+    <result column="WZ" property="wz" jdbcType="VARCHAR" />
+    <result column="DMZH" property="dmzh" jdbcType="VARCHAR" />
+    <result column="DMZHYXQ" property="dmzhyxq" jdbcType="VARCHAR" />
+    <result column="YYZZ" property="yyzz" jdbcType="VARCHAR" />
+    <result column="YYZZYXQ" property="yyzzyxq" jdbcType="VARCHAR" />
+    <result column="XYZ" property="xyz" jdbcType="CHAR" />
+    <result column="XYZBM" property="xyzbm" jdbcType="VARCHAR" />
+    <result column="XYZYXQ" property="xyzyxq" jdbcType="VARCHAR" />
+    <result column="GDZC" property="gdzc" jdbcType="VARCHAR" />
+    <result column="BZ" property="bz" jdbcType="VARCHAR" />
+    <result column="VCHAR1" property="vchar1" jdbcType="VARCHAR" />
+    <result column="VCHAR2" property="vchar2" jdbcType="VARCHAR" />
+    <result column="VCHAR3" property="vchar3" jdbcType="VARCHAR" />
+    <result column="VCHAR4" property="vchar4" jdbcType="VARCHAR" />
+    <result column="VCHAR5" property="vchar5" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="yycg.base.pojo.po.Usergys" extends="BaseResultMap" >
+    <result column="JJ" property="jj" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, MC, LB, XKZ, XKZYXQ, LXR, DH, JYFW, ZCDZ, LXDZ, YZBM, ZZC, CZ, FRMC, FRSFZ, ZCZJ, 
+    XSE, DZYX, WZ, DMZH, DMZHYXQ, YYZZ, YYZZYXQ, XYZ, XYZBM, XYZYXQ, GDZC, BZ, VCHAR1, 
+    VCHAR2, VCHAR3, VCHAR4, VCHAR5
+  </sql>
+  <sql id="Blob_Column_List" >
+    JJ
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="yycg.base.pojo.po.UsergysExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from USERGYS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="yycg.base.pojo.po.UsergysExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from USERGYS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from USERGYS
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from USERGYS
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="yycg.base.pojo.po.UsergysExample" >
+    delete from USERGYS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="yycg.base.pojo.po.Usergys" >
+    insert into USERGYS (ID, MC, LB, XKZ, 
+      XKZYXQ, LXR, DH, JYFW, 
+      ZCDZ, LXDZ, YZBM, ZZC, 
+      CZ, FRMC, FRSFZ, ZCZJ, 
+      XSE, DZYX, WZ, DMZH, 
+      DMZHYXQ, YYZZ, YYZZYXQ, 
+      XYZ, XYZBM, XYZYXQ, GDZC, 
+      BZ, VCHAR1, VCHAR2, 
+      VCHAR3, VCHAR4, VCHAR5, 
+      JJ)
+    values (#{id,jdbcType=VARCHAR}, #{mc,jdbcType=VARCHAR}, #{lb,jdbcType=VARCHAR}, #{xkz,jdbcType=VARCHAR}, 
+      #{xkzyxq,jdbcType=VARCHAR}, #{lxr,jdbcType=VARCHAR}, #{dh,jdbcType=VARCHAR}, #{jyfw,jdbcType=VARCHAR}, 
+      #{zcdz,jdbcType=VARCHAR}, #{lxdz,jdbcType=VARCHAR}, #{yzbm,jdbcType=VARCHAR}, #{zzc,jdbcType=VARCHAR}, 
+      #{cz,jdbcType=VARCHAR}, #{frmc,jdbcType=VARCHAR}, #{frsfz,jdbcType=VARCHAR}, #{zczj,jdbcType=VARCHAR}, 
+      #{xse,jdbcType=VARCHAR}, #{dzyx,jdbcType=VARCHAR}, #{wz,jdbcType=VARCHAR}, #{dmzh,jdbcType=VARCHAR}, 
+      #{dmzhyxq,jdbcType=VARCHAR}, #{yyzz,jdbcType=VARCHAR}, #{yyzzyxq,jdbcType=VARCHAR}, 
+      #{xyz,jdbcType=CHAR}, #{xyzbm,jdbcType=VARCHAR}, #{xyzyxq,jdbcType=VARCHAR}, #{gdzc,jdbcType=VARCHAR}, 
+      #{bz,jdbcType=VARCHAR}, #{vchar1,jdbcType=VARCHAR}, #{vchar2,jdbcType=VARCHAR}, 
+      #{vchar3,jdbcType=VARCHAR}, #{vchar4,jdbcType=VARCHAR}, #{vchar5,jdbcType=VARCHAR}, 
+      #{jj,jdbcType=CLOB})
+  </insert>
+  <insert id="insertSelective" parameterType="yycg.base.pojo.po.Usergys" >
+    insert into USERGYS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="mc != null" >
+        MC,
+      </if>
+      <if test="lb != null" >
+        LB,
+      </if>
+      <if test="xkz != null" >
+        XKZ,
+      </if>
+      <if test="xkzyxq != null" >
+        XKZYXQ,
+      </if>
+      <if test="lxr != null" >
+        LXR,
+      </if>
+      <if test="dh != null" >
+        DH,
+      </if>
+      <if test="jyfw != null" >
+        JYFW,
+      </if>
+      <if test="zcdz != null" >
+        ZCDZ,
+      </if>
+      <if test="lxdz != null" >
+        LXDZ,
+      </if>
+      <if test="yzbm != null" >
+        YZBM,
+      </if>
+      <if test="zzc != null" >
+        ZZC,
+      </if>
+      <if test="cz != null" >
+        CZ,
+      </if>
+      <if test="frmc != null" >
+        FRMC,
+      </if>
+      <if test="frsfz != null" >
+        FRSFZ,
+      </if>
+      <if test="zczj != null" >
+        ZCZJ,
+      </if>
+      <if test="xse != null" >
+        XSE,
+      </if>
+      <if test="dzyx != null" >
+        DZYX,
+      </if>
+      <if test="wz != null" >
+        WZ,
+      </if>
+      <if test="dmzh != null" >
+        DMZH,
+      </if>
+      <if test="dmzhyxq != null" >
+        DMZHYXQ,
+      </if>
+      <if test="yyzz != null" >
+        YYZZ,
+      </if>
+      <if test="yyzzyxq != null" >
+        YYZZYXQ,
+      </if>
+      <if test="xyz != null" >
+        XYZ,
+      </if>
+      <if test="xyzbm != null" >
+        XYZBM,
+      </if>
+      <if test="xyzyxq != null" >
+        XYZYXQ,
+      </if>
+      <if test="gdzc != null" >
+        GDZC,
+      </if>
+      <if test="bz != null" >
+        BZ,
+      </if>
+      <if test="vchar1 != null" >
+        VCHAR1,
+      </if>
+      <if test="vchar2 != null" >
+        VCHAR2,
+      </if>
+      <if test="vchar3 != null" >
+        VCHAR3,
+      </if>
+      <if test="vchar4 != null" >
+        VCHAR4,
+      </if>
+      <if test="vchar5 != null" >
+        VCHAR5,
+      </if>
+      <if test="jj != null" >
+        JJ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="mc != null" >
+        #{mc,jdbcType=VARCHAR},
+      </if>
+      <if test="lb != null" >
+        #{lb,jdbcType=VARCHAR},
+      </if>
+      <if test="xkz != null" >
+        #{xkz,jdbcType=VARCHAR},
+      </if>
+      <if test="xkzyxq != null" >
+        #{xkzyxq,jdbcType=VARCHAR},
+      </if>
+      <if test="lxr != null" >
+        #{lxr,jdbcType=VARCHAR},
+      </if>
+      <if test="dh != null" >
+        #{dh,jdbcType=VARCHAR},
+      </if>
+      <if test="jyfw != null" >
+        #{jyfw,jdbcType=VARCHAR},
+      </if>
+      <if test="zcdz != null" >
+        #{zcdz,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdz != null" >
+        #{lxdz,jdbcType=VARCHAR},
+      </if>
+      <if test="yzbm != null" >
+        #{yzbm,jdbcType=VARCHAR},
+      </if>
+      <if test="zzc != null" >
+        #{zzc,jdbcType=VARCHAR},
+      </if>
+      <if test="cz != null" >
+        #{cz,jdbcType=VARCHAR},
+      </if>
+      <if test="frmc != null" >
+        #{frmc,jdbcType=VARCHAR},
+      </if>
+      <if test="frsfz != null" >
+        #{frsfz,jdbcType=VARCHAR},
+      </if>
+      <if test="zczj != null" >
+        #{zczj,jdbcType=VARCHAR},
+      </if>
+      <if test="xse != null" >
+        #{xse,jdbcType=VARCHAR},
+      </if>
+      <if test="dzyx != null" >
+        #{dzyx,jdbcType=VARCHAR},
+      </if>
+      <if test="wz != null" >
+        #{wz,jdbcType=VARCHAR},
+      </if>
+      <if test="dmzh != null" >
+        #{dmzh,jdbcType=VARCHAR},
+      </if>
+      <if test="dmzhyxq != null" >
+        #{dmzhyxq,jdbcType=VARCHAR},
+      </if>
+      <if test="yyzz != null" >
+        #{yyzz,jdbcType=VARCHAR},
+      </if>
+      <if test="yyzzyxq != null" >
+        #{yyzzyxq,jdbcType=VARCHAR},
+      </if>
+      <if test="xyz != null" >
+        #{xyz,jdbcType=CHAR},
+      </if>
+      <if test="xyzbm != null" >
+        #{xyzbm,jdbcType=VARCHAR},
+      </if>
+      <if test="xyzyxq != null" >
+        #{xyzyxq,jdbcType=VARCHAR},
+      </if>
+      <if test="gdzc != null" >
+        #{gdzc,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null" >
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar1 != null" >
+        #{vchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar2 != null" >
+        #{vchar2,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar3 != null" >
+        #{vchar3,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar4 != null" >
+        #{vchar4,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar5 != null" >
+        #{vchar5,jdbcType=VARCHAR},
+      </if>
+      <if test="jj != null" >
+        #{jj,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="yycg.base.pojo.po.UsergysExample" resultType="java.lang.Integer" >
+    select count(*) from USERGYS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update USERGYS
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mc != null" >
+        MC = #{record.mc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lb != null" >
+        LB = #{record.lb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkz != null" >
+        XKZ = #{record.xkz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkzyxq != null" >
+        XKZYXQ = #{record.xkzyxq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lxr != null" >
+        LXR = #{record.lxr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dh != null" >
+        DH = #{record.dh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jyfw != null" >
+        JYFW = #{record.jyfw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zcdz != null" >
+        ZCDZ = #{record.zcdz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lxdz != null" >
+        LXDZ = #{record.lxdz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yzbm != null" >
+        YZBM = #{record.yzbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zzc != null" >
+        ZZC = #{record.zzc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cz != null" >
+        CZ = #{record.cz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.frmc != null" >
+        FRMC = #{record.frmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.frsfz != null" >
+        FRSFZ = #{record.frsfz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zczj != null" >
+        ZCZJ = #{record.zczj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xse != null" >
+        XSE = #{record.xse,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dzyx != null" >
+        DZYX = #{record.dzyx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wz != null" >
+        WZ = #{record.wz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dmzh != null" >
+        DMZH = #{record.dmzh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dmzhyxq != null" >
+        DMZHYXQ = #{record.dmzhyxq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yyzz != null" >
+        YYZZ = #{record.yyzz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yyzzyxq != null" >
+        YYZZYXQ = #{record.yyzzyxq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xyz != null" >
+        XYZ = #{record.xyz,jdbcType=CHAR},
+      </if>
+      <if test="record.xyzbm != null" >
+        XYZBM = #{record.xyzbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xyzyxq != null" >
+        XYZYXQ = #{record.xyzyxq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gdzc != null" >
+        GDZC = #{record.gdzc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bz != null" >
+        BZ = #{record.bz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vchar1 != null" >
+        VCHAR1 = #{record.vchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vchar2 != null" >
+        VCHAR2 = #{record.vchar2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vchar3 != null" >
+        VCHAR3 = #{record.vchar3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vchar4 != null" >
+        VCHAR4 = #{record.vchar4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vchar5 != null" >
+        VCHAR5 = #{record.vchar5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jj != null" >
+        JJ = #{record.jj,jdbcType=CLOB},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update USERGYS
+    set ID = #{record.id,jdbcType=VARCHAR},
+      MC = #{record.mc,jdbcType=VARCHAR},
+      LB = #{record.lb,jdbcType=VARCHAR},
+      XKZ = #{record.xkz,jdbcType=VARCHAR},
+      XKZYXQ = #{record.xkzyxq,jdbcType=VARCHAR},
+      LXR = #{record.lxr,jdbcType=VARCHAR},
+      DH = #{record.dh,jdbcType=VARCHAR},
+      JYFW = #{record.jyfw,jdbcType=VARCHAR},
+      ZCDZ = #{record.zcdz,jdbcType=VARCHAR},
+      LXDZ = #{record.lxdz,jdbcType=VARCHAR},
+      YZBM = #{record.yzbm,jdbcType=VARCHAR},
+      ZZC = #{record.zzc,jdbcType=VARCHAR},
+      CZ = #{record.cz,jdbcType=VARCHAR},
+      FRMC = #{record.frmc,jdbcType=VARCHAR},
+      FRSFZ = #{record.frsfz,jdbcType=VARCHAR},
+      ZCZJ = #{record.zczj,jdbcType=VARCHAR},
+      XSE = #{record.xse,jdbcType=VARCHAR},
+      DZYX = #{record.dzyx,jdbcType=VARCHAR},
+      WZ = #{record.wz,jdbcType=VARCHAR},
+      DMZH = #{record.dmzh,jdbcType=VARCHAR},
+      DMZHYXQ = #{record.dmzhyxq,jdbcType=VARCHAR},
+      YYZZ = #{record.yyzz,jdbcType=VARCHAR},
+      YYZZYXQ = #{record.yyzzyxq,jdbcType=VARCHAR},
+      XYZ = #{record.xyz,jdbcType=CHAR},
+      XYZBM = #{record.xyzbm,jdbcType=VARCHAR},
+      XYZYXQ = #{record.xyzyxq,jdbcType=VARCHAR},
+      GDZC = #{record.gdzc,jdbcType=VARCHAR},
+      BZ = #{record.bz,jdbcType=VARCHAR},
+      VCHAR1 = #{record.vchar1,jdbcType=VARCHAR},
+      VCHAR2 = #{record.vchar2,jdbcType=VARCHAR},
+      VCHAR3 = #{record.vchar3,jdbcType=VARCHAR},
+      VCHAR4 = #{record.vchar4,jdbcType=VARCHAR},
+      VCHAR5 = #{record.vchar5,jdbcType=VARCHAR},
+      JJ = #{record.jj,jdbcType=CLOB}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update USERGYS
+    set ID = #{record.id,jdbcType=VARCHAR},
+      MC = #{record.mc,jdbcType=VARCHAR},
+      LB = #{record.lb,jdbcType=VARCHAR},
+      XKZ = #{record.xkz,jdbcType=VARCHAR},
+      XKZYXQ = #{record.xkzyxq,jdbcType=VARCHAR},
+      LXR = #{record.lxr,jdbcType=VARCHAR},
+      DH = #{record.dh,jdbcType=VARCHAR},
+      JYFW = #{record.jyfw,jdbcType=VARCHAR},
+      ZCDZ = #{record.zcdz,jdbcType=VARCHAR},
+      LXDZ = #{record.lxdz,jdbcType=VARCHAR},
+      YZBM = #{record.yzbm,jdbcType=VARCHAR},
+      ZZC = #{record.zzc,jdbcType=VARCHAR},
+      CZ = #{record.cz,jdbcType=VARCHAR},
+      FRMC = #{record.frmc,jdbcType=VARCHAR},
+      FRSFZ = #{record.frsfz,jdbcType=VARCHAR},
+      ZCZJ = #{record.zczj,jdbcType=VARCHAR},
+      XSE = #{record.xse,jdbcType=VARCHAR},
+      DZYX = #{record.dzyx,jdbcType=VARCHAR},
+      WZ = #{record.wz,jdbcType=VARCHAR},
+      DMZH = #{record.dmzh,jdbcType=VARCHAR},
+      DMZHYXQ = #{record.dmzhyxq,jdbcType=VARCHAR},
+      YYZZ = #{record.yyzz,jdbcType=VARCHAR},
+      YYZZYXQ = #{record.yyzzyxq,jdbcType=VARCHAR},
+      XYZ = #{record.xyz,jdbcType=CHAR},
+      XYZBM = #{record.xyzbm,jdbcType=VARCHAR},
+      XYZYXQ = #{record.xyzyxq,jdbcType=VARCHAR},
+      GDZC = #{record.gdzc,jdbcType=VARCHAR},
+      BZ = #{record.bz,jdbcType=VARCHAR},
+      VCHAR1 = #{record.vchar1,jdbcType=VARCHAR},
+      VCHAR2 = #{record.vchar2,jdbcType=VARCHAR},
+      VCHAR3 = #{record.vchar3,jdbcType=VARCHAR},
+      VCHAR4 = #{record.vchar4,jdbcType=VARCHAR},
+      VCHAR5 = #{record.vchar5,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="yycg.base.pojo.po.Usergys" >
+    update USERGYS
+    <set >
+      <if test="mc != null" >
+        MC = #{mc,jdbcType=VARCHAR},
+      </if>
+      <if test="lb != null" >
+        LB = #{lb,jdbcType=VARCHAR},
+      </if>
+      <if test="xkz != null" >
+        XKZ = #{xkz,jdbcType=VARCHAR},
+      </if>
+      <if test="xkzyxq != null" >
+        XKZYXQ = #{xkzyxq,jdbcType=VARCHAR},
+      </if>
+      <if test="lxr != null" >
+        LXR = #{lxr,jdbcType=VARCHAR},
+      </if>
+      <if test="dh != null" >
+        DH = #{dh,jdbcType=VARCHAR},
+      </if>
+      <if test="jyfw != null" >
+        JYFW = #{jyfw,jdbcType=VARCHAR},
+      </if>
+      <if test="zcdz != null" >
+        ZCDZ = #{zcdz,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdz != null" >
+        LXDZ = #{lxdz,jdbcType=VARCHAR},
+      </if>
+      <if test="yzbm != null" >
+        YZBM = #{yzbm,jdbcType=VARCHAR},
+      </if>
+      <if test="zzc != null" >
+        ZZC = #{zzc,jdbcType=VARCHAR},
+      </if>
+      <if test="cz != null" >
+        CZ = #{cz,jdbcType=VARCHAR},
+      </if>
+      <if test="frmc != null" >
+        FRMC = #{frmc,jdbcType=VARCHAR},
+      </if>
+      <if test="frsfz != null" >
+        FRSFZ = #{frsfz,jdbcType=VARCHAR},
+      </if>
+      <if test="zczj != null" >
+        ZCZJ = #{zczj,jdbcType=VARCHAR},
+      </if>
+      <if test="xse != null" >
+        XSE = #{xse,jdbcType=VARCHAR},
+      </if>
+      <if test="dzyx != null" >
+        DZYX = #{dzyx,jdbcType=VARCHAR},
+      </if>
+      <if test="wz != null" >
+        WZ = #{wz,jdbcType=VARCHAR},
+      </if>
+      <if test="dmzh != null" >
+        DMZH = #{dmzh,jdbcType=VARCHAR},
+      </if>
+      <if test="dmzhyxq != null" >
+        DMZHYXQ = #{dmzhyxq,jdbcType=VARCHAR},
+      </if>
+      <if test="yyzz != null" >
+        YYZZ = #{yyzz,jdbcType=VARCHAR},
+      </if>
+      <if test="yyzzyxq != null" >
+        YYZZYXQ = #{yyzzyxq,jdbcType=VARCHAR},
+      </if>
+      <if test="xyz != null" >
+        XYZ = #{xyz,jdbcType=CHAR},
+      </if>
+      <if test="xyzbm != null" >
+        XYZBM = #{xyzbm,jdbcType=VARCHAR},
+      </if>
+      <if test="xyzyxq != null" >
+        XYZYXQ = #{xyzyxq,jdbcType=VARCHAR},
+      </if>
+      <if test="gdzc != null" >
+        GDZC = #{gdzc,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null" >
+        BZ = #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar1 != null" >
+        VCHAR1 = #{vchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar2 != null" >
+        VCHAR2 = #{vchar2,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar3 != null" >
+        VCHAR3 = #{vchar3,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar4 != null" >
+        VCHAR4 = #{vchar4,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar5 != null" >
+        VCHAR5 = #{vchar5,jdbcType=VARCHAR},
+      </if>
+      <if test="jj != null" >
+        JJ = #{jj,jdbcType=CLOB},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="yycg.base.pojo.po.Usergys" >
+    update USERGYS
+    set MC = #{mc,jdbcType=VARCHAR},
+      LB = #{lb,jdbcType=VARCHAR},
+      XKZ = #{xkz,jdbcType=VARCHAR},
+      XKZYXQ = #{xkzyxq,jdbcType=VARCHAR},
+      LXR = #{lxr,jdbcType=VARCHAR},
+      DH = #{dh,jdbcType=VARCHAR},
+      JYFW = #{jyfw,jdbcType=VARCHAR},
+      ZCDZ = #{zcdz,jdbcType=VARCHAR},
+      LXDZ = #{lxdz,jdbcType=VARCHAR},
+      YZBM = #{yzbm,jdbcType=VARCHAR},
+      ZZC = #{zzc,jdbcType=VARCHAR},
+      CZ = #{cz,jdbcType=VARCHAR},
+      FRMC = #{frmc,jdbcType=VARCHAR},
+      FRSFZ = #{frsfz,jdbcType=VARCHAR},
+      ZCZJ = #{zczj,jdbcType=VARCHAR},
+      XSE = #{xse,jdbcType=VARCHAR},
+      DZYX = #{dzyx,jdbcType=VARCHAR},
+      WZ = #{wz,jdbcType=VARCHAR},
+      DMZH = #{dmzh,jdbcType=VARCHAR},
+      DMZHYXQ = #{dmzhyxq,jdbcType=VARCHAR},
+      YYZZ = #{yyzz,jdbcType=VARCHAR},
+      YYZZYXQ = #{yyzzyxq,jdbcType=VARCHAR},
+      XYZ = #{xyz,jdbcType=CHAR},
+      XYZBM = #{xyzbm,jdbcType=VARCHAR},
+      XYZYXQ = #{xyzyxq,jdbcType=VARCHAR},
+      GDZC = #{gdzc,jdbcType=VARCHAR},
+      BZ = #{bz,jdbcType=VARCHAR},
+      VCHAR1 = #{vchar1,jdbcType=VARCHAR},
+      VCHAR2 = #{vchar2,jdbcType=VARCHAR},
+      VCHAR3 = #{vchar3,jdbcType=VARCHAR},
+      VCHAR4 = #{vchar4,jdbcType=VARCHAR},
+      VCHAR5 = #{vchar5,jdbcType=VARCHAR},
+      JJ = #{jj,jdbcType=CLOB}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="yycg.base.pojo.po.Usergys" >
+    update USERGYS
+    set MC = #{mc,jdbcType=VARCHAR},
+      LB = #{lb,jdbcType=VARCHAR},
+      XKZ = #{xkz,jdbcType=VARCHAR},
+      XKZYXQ = #{xkzyxq,jdbcType=VARCHAR},
+      LXR = #{lxr,jdbcType=VARCHAR},
+      DH = #{dh,jdbcType=VARCHAR},
+      JYFW = #{jyfw,jdbcType=VARCHAR},
+      ZCDZ = #{zcdz,jdbcType=VARCHAR},
+      LXDZ = #{lxdz,jdbcType=VARCHAR},
+      YZBM = #{yzbm,jdbcType=VARCHAR},
+      ZZC = #{zzc,jdbcType=VARCHAR},
+      CZ = #{cz,jdbcType=VARCHAR},
+      FRMC = #{frmc,jdbcType=VARCHAR},
+      FRSFZ = #{frsfz,jdbcType=VARCHAR},
+      ZCZJ = #{zczj,jdbcType=VARCHAR},
+      XSE = #{xse,jdbcType=VARCHAR},
+      DZYX = #{dzyx,jdbcType=VARCHAR},
+      WZ = #{wz,jdbcType=VARCHAR},
+      DMZH = #{dmzh,jdbcType=VARCHAR},
+      DMZHYXQ = #{dmzhyxq,jdbcType=VARCHAR},
+      YYZZ = #{yyzz,jdbcType=VARCHAR},
+      YYZZYXQ = #{yyzzyxq,jdbcType=VARCHAR},
+      XYZ = #{xyz,jdbcType=CHAR},
+      XYZBM = #{xyzbm,jdbcType=VARCHAR},
+      XYZYXQ = #{xyzyxq,jdbcType=VARCHAR},
+      GDZC = #{gdzc,jdbcType=VARCHAR},
+      BZ = #{bz,jdbcType=VARCHAR},
+      VCHAR1 = #{vchar1,jdbcType=VARCHAR},
+      VCHAR2 = #{vchar2,jdbcType=VARCHAR},
+      VCHAR3 = #{vchar3,jdbcType=VARCHAR},
+      VCHAR4 = #{vchar4,jdbcType=VARCHAR},
+      VCHAR5 = #{vchar5,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

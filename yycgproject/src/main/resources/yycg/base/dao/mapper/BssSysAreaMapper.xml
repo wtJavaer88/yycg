@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="yycg.base.dao.mapper.BssSysAreaMapper" >
+  <resultMap id="BaseResultMap" type="yycg.base.pojo.po.BssSysArea" >
+    <id column="AREAID" property="areaid" jdbcType="VARCHAR" />
+    <result column="AREANAME" property="areaname" jdbcType="VARCHAR" />
+    <result column="AREALEVEL" property="arealevel" jdbcType="DECIMAL" />
+    <result column="AREAFULLNAME" property="areafullname" jdbcType="VARCHAR" />
+    <result column="PARENTID" property="parentid" jdbcType="VARCHAR" />
+    <result column="SHORTNAME" property="shortname" jdbcType="VARCHAR" />
+    <result column="ISUNIT" property="isunit" jdbcType="CHAR" />
+    <result column="LASTUPDATE" property="lastupdate" jdbcType="VARCHAR" />
+    <result column="YZCODE" property="yzcode" jdbcType="VARCHAR" />
+    <result column="VCHAR1" property="vchar1" jdbcType="VARCHAR" />
+    <result column="VCHAR2" property="vchar2" jdbcType="VARCHAR" />
+    <result column="VCHAR3" property="vchar3" jdbcType="VARCHAR" />
+    <result column="VCHAR4" property="vchar4" jdbcType="VARCHAR" />
+    <result column="VCHAR5" property="vchar5" jdbcType="VARCHAR" />
+    <result column="VCHAR6" property="vchar6" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    AREAID, AREANAME, AREALEVEL, AREAFULLNAME, PARENTID, SHORTNAME, ISUNIT, LASTUPDATE, 
+    YZCODE, VCHAR1, VCHAR2, VCHAR3, VCHAR4, VCHAR5, VCHAR6
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="yycg.base.pojo.po.BssSysAreaExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from BSS_SYS_AREA
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from BSS_SYS_AREA
+    where AREAID = #{areaid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from BSS_SYS_AREA
+    where AREAID = #{areaid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="yycg.base.pojo.po.BssSysAreaExample" >
+    delete from BSS_SYS_AREA
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="yycg.base.pojo.po.BssSysArea" >
+    insert into BSS_SYS_AREA (AREAID, AREANAME, AREALEVEL, 
+      AREAFULLNAME, PARENTID, SHORTNAME, 
+      ISUNIT, LASTUPDATE, YZCODE, 
+      VCHAR1, VCHAR2, VCHAR3, 
+      VCHAR4, VCHAR5, VCHAR6
+      )
+    values (#{areaid,jdbcType=VARCHAR}, #{areaname,jdbcType=VARCHAR}, #{arealevel,jdbcType=DECIMAL}, 
+      #{areafullname,jdbcType=VARCHAR}, #{parentid,jdbcType=VARCHAR}, #{shortname,jdbcType=VARCHAR}, 
+      #{isunit,jdbcType=CHAR}, #{lastupdate,jdbcType=VARCHAR}, #{yzcode,jdbcType=VARCHAR}, 
+      #{vchar1,jdbcType=VARCHAR}, #{vchar2,jdbcType=VARCHAR}, #{vchar3,jdbcType=VARCHAR}, 
+      #{vchar4,jdbcType=VARCHAR}, #{vchar5,jdbcType=VARCHAR}, #{vchar6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="yycg.base.pojo.po.BssSysArea" >
+    insert into BSS_SYS_AREA
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="areaid != null" >
+        AREAID,
+      </if>
+      <if test="areaname != null" >
+        AREANAME,
+      </if>
+      <if test="arealevel != null" >
+        AREALEVEL,
+      </if>
+      <if test="areafullname != null" >
+        AREAFULLNAME,
+      </if>
+      <if test="parentid != null" >
+        PARENTID,
+      </if>
+      <if test="shortname != null" >
+        SHORTNAME,
+      </if>
+      <if test="isunit != null" >
+        ISUNIT,
+      </if>
+      <if test="lastupdate != null" >
+        LASTUPDATE,
+      </if>
+      <if test="yzcode != null" >
+        YZCODE,
+      </if>
+      <if test="vchar1 != null" >
+        VCHAR1,
+      </if>
+      <if test="vchar2 != null" >
+        VCHAR2,
+      </if>
+      <if test="vchar3 != null" >
+        VCHAR3,
+      </if>
+      <if test="vchar4 != null" >
+        VCHAR4,
+      </if>
+      <if test="vchar5 != null" >
+        VCHAR5,
+      </if>
+      <if test="vchar6 != null" >
+        VCHAR6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="areaid != null" >
+        #{areaid,jdbcType=VARCHAR},
+      </if>
+      <if test="areaname != null" >
+        #{areaname,jdbcType=VARCHAR},
+      </if>
+      <if test="arealevel != null" >
+        #{arealevel,jdbcType=DECIMAL},
+      </if>
+      <if test="areafullname != null" >
+        #{areafullname,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=VARCHAR},
+      </if>
+      <if test="shortname != null" >
+        #{shortname,jdbcType=VARCHAR},
+      </if>
+      <if test="isunit != null" >
+        #{isunit,jdbcType=CHAR},
+      </if>
+      <if test="lastupdate != null" >
+        #{lastupdate,jdbcType=VARCHAR},
+      </if>
+      <if test="yzcode != null" >
+        #{yzcode,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar1 != null" >
+        #{vchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar2 != null" >
+        #{vchar2,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar3 != null" >
+        #{vchar3,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar4 != null" >
+        #{vchar4,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar5 != null" >
+        #{vchar5,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar6 != null" >
+        #{vchar6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="yycg.base.pojo.po.BssSysAreaExample" resultType="java.lang.Integer" >
+    select count(*) from BSS_SYS_AREA
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update BSS_SYS_AREA
+    <set >
+      <if test="record.areaid != null" >
+        AREAID = #{record.areaid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaname != null" >
+        AREANAME = #{record.areaname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arealevel != null" >
+        AREALEVEL = #{record.arealevel,jdbcType=DECIMAL},
+      </if>
+      <if test="record.areafullname != null" >
+        AREAFULLNAME = #{record.areafullname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentid != null" >
+        PARENTID = #{record.parentid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shortname != null" >
+        SHORTNAME = #{record.shortname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isunit != null" >
+        ISUNIT = #{record.isunit,jdbcType=CHAR},
+      </if>
+      <if test="record.lastupdate != null" >
+        LASTUPDATE = #{record.lastupdate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yzcode != null" >
+        YZCODE = #{record.yzcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vchar1 != null" >
+        VCHAR1 = #{record.vchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vchar2 != null" >
+        VCHAR2 = #{record.vchar2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vchar3 != null" >
+        VCHAR3 = #{record.vchar3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vchar4 != null" >
+        VCHAR4 = #{record.vchar4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vchar5 != null" >
+        VCHAR5 = #{record.vchar5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vchar6 != null" >
+        VCHAR6 = #{record.vchar6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update BSS_SYS_AREA
+    set AREAID = #{record.areaid,jdbcType=VARCHAR},
+      AREANAME = #{record.areaname,jdbcType=VARCHAR},
+      AREALEVEL = #{record.arealevel,jdbcType=DECIMAL},
+      AREAFULLNAME = #{record.areafullname,jdbcType=VARCHAR},
+      PARENTID = #{record.parentid,jdbcType=VARCHAR},
+      SHORTNAME = #{record.shortname,jdbcType=VARCHAR},
+      ISUNIT = #{record.isunit,jdbcType=CHAR},
+      LASTUPDATE = #{record.lastupdate,jdbcType=VARCHAR},
+      YZCODE = #{record.yzcode,jdbcType=VARCHAR},
+      VCHAR1 = #{record.vchar1,jdbcType=VARCHAR},
+      VCHAR2 = #{record.vchar2,jdbcType=VARCHAR},
+      VCHAR3 = #{record.vchar3,jdbcType=VARCHAR},
+      VCHAR4 = #{record.vchar4,jdbcType=VARCHAR},
+      VCHAR5 = #{record.vchar5,jdbcType=VARCHAR},
+      VCHAR6 = #{record.vchar6,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="yycg.base.pojo.po.BssSysArea" >
+    update BSS_SYS_AREA
+    <set >
+      <if test="areaname != null" >
+        AREANAME = #{areaname,jdbcType=VARCHAR},
+      </if>
+      <if test="arealevel != null" >
+        AREALEVEL = #{arealevel,jdbcType=DECIMAL},
+      </if>
+      <if test="areafullname != null" >
+        AREAFULLNAME = #{areafullname,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        PARENTID = #{parentid,jdbcType=VARCHAR},
+      </if>
+      <if test="shortname != null" >
+        SHORTNAME = #{shortname,jdbcType=VARCHAR},
+      </if>
+      <if test="isunit != null" >
+        ISUNIT = #{isunit,jdbcType=CHAR},
+      </if>
+      <if test="lastupdate != null" >
+        LASTUPDATE = #{lastupdate,jdbcType=VARCHAR},
+      </if>
+      <if test="yzcode != null" >
+        YZCODE = #{yzcode,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar1 != null" >
+        VCHAR1 = #{vchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar2 != null" >
+        VCHAR2 = #{vchar2,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar3 != null" >
+        VCHAR3 = #{vchar3,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar4 != null" >
+        VCHAR4 = #{vchar4,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar5 != null" >
+        VCHAR5 = #{vchar5,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar6 != null" >
+        VCHAR6 = #{vchar6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where AREAID = #{areaid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="yycg.base.pojo.po.BssSysArea" >
+    update BSS_SYS_AREA
+    set AREANAME = #{areaname,jdbcType=VARCHAR},
+      AREALEVEL = #{arealevel,jdbcType=DECIMAL},
+      AREAFULLNAME = #{areafullname,jdbcType=VARCHAR},
+      PARENTID = #{parentid,jdbcType=VARCHAR},
+      SHORTNAME = #{shortname,jdbcType=VARCHAR},
+      ISUNIT = #{isunit,jdbcType=CHAR},
+      LASTUPDATE = #{lastupdate,jdbcType=VARCHAR},
+      YZCODE = #{yzcode,jdbcType=VARCHAR},
+      VCHAR1 = #{vchar1,jdbcType=VARCHAR},
+      VCHAR2 = #{vchar2,jdbcType=VARCHAR},
+      VCHAR3 = #{vchar3,jdbcType=VARCHAR},
+      VCHAR4 = #{vchar4,jdbcType=VARCHAR},
+      VCHAR5 = #{vchar5,jdbcType=VARCHAR},
+      VCHAR6 = #{vchar6,jdbcType=VARCHAR}
+    where AREAID = #{areaid,jdbcType=VARCHAR}
+  </update>
+</mapper>
