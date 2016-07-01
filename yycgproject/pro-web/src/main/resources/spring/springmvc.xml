@@ -30,9 +30,9 @@
 	</bean>
      <!-- json转换器 -->
      <bean id="jsonMessageConverter"
-		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 	</bean>
-     
+      
 	<!-- 统一异常处理类 -->
 	<bean id="handlerExceptionResolver"
 		class="yycg.base.process.exception.ExceptionResolverCustom">

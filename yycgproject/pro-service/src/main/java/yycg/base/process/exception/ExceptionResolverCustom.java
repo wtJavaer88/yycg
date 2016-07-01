@@ -3,7 +3,6 @@ package yycg.base.process.exception;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -46,8 +45,8 @@ public class ExceptionResolverCustom implements HandlerExceptionResolver {
 	// 前端控制器调用此方法执行异常处理
 	// handler，执行的action类就包装了一个方法（对应url的方法）
 	@Override
-	public ModelAndView resolveException(HttpServletRequest request,
-			HttpServletResponse response, Object handler, Exception ex) {
+	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler,
+			Exception ex) {
 
 		// 输出 异常信息
 		ex.printStackTrace();
@@ -59,12 +58,10 @@ public class ExceptionResolverCustom implements HandlerExceptionResolver {
 		// 判断方法是否返回json
 		// 只要方法上有responsebody注解表示返回json
 		// 查询method是否有responsebody注解
-		ResponseBody responseBody = AnnotationUtils.findAnnotation(method,
-				ResponseBody.class);
+		ResponseBody responseBody = AnnotationUtils.findAnnotation(method, ResponseBody.class);
 		if (responseBody != null) {
 			// 将异常信息转json输出
-			return this.resolveJsonException(request, response, handlerMethod,
-					ex);
+			return this.resolveJsonException(request, response, handlerMethod, ex);
 
 		}
 		// 这里说明action返回的是jsp页面
@@ -73,13 +70,11 @@ public class ExceptionResolverCustom implements HandlerExceptionResolver {
 		ExceptionResultInfo exceptionResultInfo = resolveExceptionCustom(ex);
 
 		// 将异常信息在异常页面显示
-		request.setAttribute("exceptionResultInfo",
-				exceptionResultInfo.getResultInfo());
+		request.setAttribute("exceptionResultInfo", exceptionResultInfo.getResultInfo());
 
 		// 转向错误页面
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("exceptionResultInfo",
-				exceptionResultInfo.getResultInfo());
+		modelAndView.addObject("exceptionResultInfo", exceptionResultInfo.getResultInfo());
 		modelAndView.setViewName("/base/error");// 逻辑视图名
 		return modelAndView;
 	}
@@ -102,16 +97,16 @@ public class ExceptionResolverCustom implements HandlerExceptionResolver {
 	}
 
 	// 将异常信息转json输出
-	private ModelAndView resolveJsonException(HttpServletRequest request,
-			HttpServletResponse response, Object handler, Exception ex) {
+	private ModelAndView resolveJsonException(HttpServletRequest request, HttpServletResponse response, Object handler,
+			Exception ex) {
 
 		// 解析异常
 		ExceptionResultInfo exceptionResultInfo = resolveExceptionCustom(ex);
-		
+
 		HttpOutputMessage outputMessage = new ServletServerHttpResponse(response);
-		
+
 		try {
-			//将exceptionResultInfo对象转成json输出
+			// 将exceptionResultInfo对象转成json输出
 			jsonMessageConverter.write(exceptionResultInfo, MediaType.APPLICATION_JSON, outputMessage);
 		} catch (HttpMessageNotWritableException e) {
 			// TODO Auto-generated catch block
@@ -120,7 +115,6 @@ public class ExceptionResolverCustom implements HandlerExceptionResolver {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 
 		return new ModelAndView();
 
@@ -130,8 +124,7 @@ public class ExceptionResolverCustom implements HandlerExceptionResolver {
 		return jsonMessageConverter;
 	}
 
-	public void setJsonMessageConverter(
-			HttpMessageConverter<ExceptionResultInfo> jsonMessageConverter) {
+	public void setJsonMessageConverter(HttpMessageConverter<ExceptionResultInfo> jsonMessageConverter) {
 		this.jsonMessageConverter = jsonMessageConverter;
 	}
 
