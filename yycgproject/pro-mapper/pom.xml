@@ -13,7 +13,23 @@
 			<artifactId>pro-pojo</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-  	
+  		
+  		<!-- Mybatis -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+		</dependency>
+		<!-- 通用Mapper -->
+		<dependency>
+			<groupId>com.github.abel533</groupId>
+			<artifactId>mapper</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>persistence-api</artifactId>
+					<groupId>javax.persistence</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 		
 		
   </dependencies>
